@@ -52,14 +52,14 @@ def night():
 
     return now >= sunset or now <= sunrise
 
-alert = False
+alerted = False
 
 while True:
     """Checks if the ISS is overhead and if the time is nighttime, and if so,
-      it sends an email to the user."""
+      it sends an email to the user — but only once per pass."""
     time.sleep(60)  # Check every 60 seconds
     if iss_overhead() and night():
-        if not alert:
+        if not alerted:
             with smtplib.SMTP("smtp.gmail.com") as connection:
                 connection.starttls()
                 connection.login(user=MY_GMAIL, password=PASSWORD)
@@ -69,6 +69,6 @@ while True:
                     msg=MESSAGE.encode("utf-8"),
                 )
             print("Sent email")
-            alert = True
+            alerted = True
     else:
-        alert = False
+        alerted = False
