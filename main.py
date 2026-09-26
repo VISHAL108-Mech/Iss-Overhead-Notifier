@@ -15,8 +15,8 @@ PASSWORD = os.getenv("SMTP_GMAIL_PASSWORD")
 MESSAGE = "Subject: ISS Coming🛰️\n\nLook at the sky, ISS is above your head."
 
 # Latitude and longitude of the user
-MY_LAT = 25.487049102783203
-MY_LONG = 83.57356262207031
+MY_LAT = float(os.getenv("ZNA_LAT"))
+MY_LONG = float(os.getenv("ZNA_LONG"))
 
 
 def iss_overhead():
